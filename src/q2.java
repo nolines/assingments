@@ -1,9 +1,4 @@
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
-
-import static java.util.Arrays.stream;
 
 ///**
 // * Created by Cemre on 28.8.2016.
@@ -34,23 +29,24 @@ public class q2  {
 
         arrlist=data;
         func(0,0);
-        System.out.println("max-" + func(0,0));
+        System.out.println("Maximum Sum: " + func(0, 0));
     }
 
-    private static int func(int x, int y) {
-        if (x >= arrlist.length)
-            return 0;
-        int self = arrlist[x][y];
-        if (isPrime(self))
-            return 0;
-        else
-            return self + Math.max(func(x + 1, y), func(x + 1, y + 1));
-    }
     public static boolean isPrime(int num) {
         for (int i = 2; i < num; i++) {
             if (num % i == 0)
                 return false;
         }
         return true;
+    }
+
+    private static int func(int firstNumber, int secondNumber) {
+        if (firstNumber >= arrlist.length)
+            return 0;
+        int initSum = arrlist[firstNumber][secondNumber];
+        if (isPrime(initSum))
+            return 0;
+        else
+            return initSum + Math.max(func(firstNumber + 1, secondNumber), func(firstNumber + 1, secondNumber + 1));
     }
 }
